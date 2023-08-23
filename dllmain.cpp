@@ -1,6 +1,4 @@
-﻿#pragma execution_character_set("utf-8")
-
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <Shlwapi.h>
 #pragma comment(lib, "Shlwapi.lib")
 
@@ -9,11 +7,13 @@ t_StrMapFunc o_strMapFunc = NULL;
 
 #include "StringMap.h"
 
+extern unordered_map<string, string> cht_mapping;
+
 PVOID Hook_StrMapFunc(PVOID lpData, LPSTR lpString)
 {
 	auto cur = cht_mapping.find(lpString);
 	if (cur != cht_mapping.end()) {
-		lpString = (LPSTR)cur->second;
+		lpString = (LPSTR)cur->second.c_str();
 	}
 	return o_strMapFunc(lpData, lpString);
 }
@@ -28,6 +28,8 @@ BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 		DisableThreadLibraryCalls(hInstance);
 		HijackDLL();
 		HookFunction();
+
+		FetchStringMap();
 	}
 	return TRUE;
 }

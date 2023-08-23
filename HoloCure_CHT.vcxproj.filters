@@ -33,6 +33,9 @@
     <ClCompile Include="detours\detours.cpp">
       <Filter>來源檔案\detours</Filter>
     </ClCompile>
+    <ClCompile Include="StringMap.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="VERSION.def">
@@ -43,5 +46,10 @@
     <ClInclude Include="StringMap.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="cht_mapping.json">
+      <Filter>資源檔</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
